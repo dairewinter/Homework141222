@@ -36,4 +36,12 @@ public class Recipe {
     public String getId() {
         return id;
     }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public void setCookingSteps(List<String> cookingSteps) {
+        this.cookingSteps = cookingSteps;
+    }
 }

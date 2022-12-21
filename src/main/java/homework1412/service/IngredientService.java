@@ -28,8 +28,26 @@ public class IngredientService {
         }
     }
 
+    public Ingredient editIngredient(String id, Ingredient ingredient){
+        if (ingredients.containsKey(id)){
+            ingredient.setMeasure(ingredient.getMeasure());
+            return ingredients.get(id);
+
+        }
+        return null;
+    }
+
     public Collection<Ingredient> getAllIngredients(){
         return ingredients.values();
+    }
+
+    public boolean deleteIngredient(String id){
+        if (ingredients.containsKey(id)){
+            ingredients.remove(id);
+            return true;
+
+        }
+        return false;
     }
 
 }

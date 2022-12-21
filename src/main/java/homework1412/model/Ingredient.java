@@ -28,4 +28,16 @@ public class Ingredient {
     public String getId(){
         return id;
     }
+
+    public void setAmountOfIngredient(int amountOfIngredient) {
+        this.amountOfIngredient = amountOfIngredient;
+    }
+
+    public void setMeasure(String measure) {
+        this.measure = measure;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }
