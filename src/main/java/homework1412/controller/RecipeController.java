@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/recipe")
+@RequestMapping("/recipes")
 public class RecipeController {
     private final RecipeService recipeService;
 
@@ -20,7 +20,7 @@ public class RecipeController {
         return this.recipeService.getRecipe(getRecipe().getId());
     }
 
-    @PostMapping("/addingredient")
+    @PostMapping()
     public Recipe addRecipes(@RequestBody Recipe recipe){
         return this.recipeService.addRecipe(recipe);
     }

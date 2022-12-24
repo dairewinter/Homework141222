@@ -12,9 +12,7 @@ public class IngredientService {
     private final Map<String, Ingredient> ingredients = new HashMap<>();
 
     public Ingredient addIngredient(Ingredient ingredient) {
-        if (ingredients.containsKey(ingredient.getId())) {
-            throw new RuntimeException("Такой ингредиент уже существует!");
-        } else {
+        if (!ingredients.containsKey(ingredient.getId())) {
             ingredients.put(ingredient.getId(), ingredient);
         }
         return ingredient;
@@ -45,7 +43,6 @@ public class IngredientService {
         if (ingredients.containsKey(id)){
             ingredients.remove(id);
             return true;
-
         }
         return false;
     }

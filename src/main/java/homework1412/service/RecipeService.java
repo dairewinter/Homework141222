@@ -11,9 +11,7 @@ public class RecipeService {
     private final Map<String, Recipe> recipes = new HashMap<>();
 
     public Recipe addRecipe(Recipe recipe) {
-        if (recipes.containsKey(recipe.getId())) {
-            throw new RuntimeException("Такой рецепт уже существует!");
-        } else {
+        if (!recipes.containsKey(recipe.getId())) {
             recipes.put(recipe.getId(), recipe);
         }
         return recipe;
