@@ -2,6 +2,8 @@ package homework1412.controller;
 
 import homework1412.model.Ingredient;
 import homework1412.service.IngredientService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,6 +11,7 @@ import java.util.Collection;
 
 @RestController
 @RequestMapping("/ingredients")
+@Tag(name = "Ингредиенты", description = "Операции с ингредиентами")
 public class IngredientController {
     private final IngredientService ingredientService;
 
@@ -24,16 +27,18 @@ public class IngredientController {
        return ResponseEntity.ok(ingredient);
     }
 
-    @GetMapping("/allingredients")
+    @PostMapping("/allingredients")
     public Collection<Ingredient> getAll(){
         return this.ingredientService.getAllIngredients();
     }
-    @PostMapping("/addingredient")
+    @PostMapping()
+    @Operation(description = "Добавление ингредиента")
     public ResponseEntity<Ingredient> addIngredients(@RequestBody Ingredient ingredient){
         Ingredient id = ingredientService.addIngredient(ingredient);
         return ResponseEntity.ok(id);
     }
     @DeleteMapping("/{id}")
+    @Operation(description = "Удаление ингредиента")
     public ResponseEntity<Void> deleteIngredient(@PathVariable String id){
         if (ingredientService.deleteIngredient(id)){
             return ResponseEntity.ok().build();
@@ -42,6 +47,7 @@ public class IngredientController {
     }
 
     @PutMapping("/{id}")
+    @Operation(description = "Редактирование ингредиента")
     public ResponseEntity<Ingredient> editIngredient(@PathVariable String id, @RequestBody Ingredient ingredient) {
         ingredient = ingredientService.editIngredient(id, ingredient);
         if (ingredient == null){

@@ -1,6 +1,7 @@
 package homework1412.service;
 
 import homework1412.model.Ingredient;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -19,7 +20,7 @@ public class IngredientService {
     }
 
     public Ingredient getIngredient(String id){
-        if (ingredients.containsKey(id)){
+        if (!StringUtils.isEmpty(id) && ingredients.containsKey(id)){
             return ingredients.get(id);
         } else {
         throw new RuntimeException("Ингредиент не найден");
@@ -27,7 +28,7 @@ public class IngredientService {
     }
 
     public Ingredient editIngredient(String id, Ingredient ingredient){
-        if (ingredients.containsKey(id)){
+        if (!StringUtils.isEmpty(id) && ingredients.containsKey(id)){
             ingredient.setMeasure(ingredient.getMeasure());
             return ingredients.get(id);
 
@@ -40,7 +41,7 @@ public class IngredientService {
     }
 
     public boolean deleteIngredient(String id){
-        if (ingredients.containsKey(id)){
+        if (!StringUtils.isEmpty(id) && ingredients.containsKey(id)){
             ingredients.remove(id);
             return true;
         }

@@ -1,6 +1,7 @@
 package homework1412.service;
 
 import homework1412.model.Recipe;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -18,7 +19,7 @@ public class RecipeService {
     }
 
     public Recipe getRecipe(String id){
-        if (recipes.containsKey(id)){
+        if ( !StringUtils.isEmpty(id) && recipes.containsKey(id)){
             return recipes.get(id);
         } else {
             throw new RuntimeException("Ингредиент не найден");
@@ -26,7 +27,7 @@ public class RecipeService {
     }
 
     public Recipe editRecipe(String id, Recipe recipe){
-        if (recipes.containsKey(id)){
+        if (!StringUtils.isEmpty(id) && recipes.containsKey(id)){
             recipe.setCookingSteps(recipe.getCookingSteps());
             return recipe;
         }
@@ -34,7 +35,7 @@ public class RecipeService {
     }
 
     public boolean deleteRecipe(String id){
-        if (recipes.containsKey(id)){
+        if (!StringUtils.isEmpty(id) && recipes.containsKey(id)){
             recipes.remove(id);
             return true;
 
