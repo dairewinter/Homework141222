@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class IngredientService {
+public class IngredientService implements IngredientSerivceImpl {
     private final Map<String, Ingredient> ingredients = new HashMap<>();
 
     public Ingredient addIngredient(Ingredient ingredient) {
@@ -23,7 +23,7 @@ public class IngredientService {
         if (!StringUtils.isEmpty(id) && ingredients.containsKey(id)){
             return ingredients.get(id);
         } else {
-        throw new RuntimeException("Ингредиент не найден");
+        throw new ProductNotFoundException();
         }
     }
 

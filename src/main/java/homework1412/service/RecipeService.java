@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 @Service
-public class RecipeService {
+public class RecipeService implements RecipeServiceImpl {
     private final Map<String, Recipe> recipes = new HashMap<>();
 
     public Recipe addRecipe(Recipe recipe) {
@@ -22,7 +22,7 @@ public class RecipeService {
         if ( !StringUtils.isEmpty(id) && recipes.containsKey(id)){
             return recipes.get(id);
         } else {
-            throw new RuntimeException("Ингредиент не найден");
+            throw new ProductNotFoundException();
         }
     }
 
