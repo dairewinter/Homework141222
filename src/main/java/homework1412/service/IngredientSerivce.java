@@ -1,11 +1,12 @@
 package homework1412.service;
 
 import homework1412.model.Ingredient;
-import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
-public interface IngredientSerivceImpl {
+@Service
+public interface IngredientSerivce {
 
     public Ingredient addIngredient(Ingredient ingredient);
     public Ingredient getIngredient(String id);

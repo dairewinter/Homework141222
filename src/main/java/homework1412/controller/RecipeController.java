@@ -1,8 +1,8 @@
 package homework1412.controller;
 
-import homework1412.model.Ingredient;
 import homework1412.model.Recipe;
 import homework1412.service.RecipeService;
+import homework1412.service.RecipeServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class RecipeController {
     private final RecipeService recipeService;
 
-    public RecipeController(RecipeService recipeService) {
+    public RecipeController(RecipeServiceImpl recipeService) {
         this.recipeService = recipeService;
     }
 

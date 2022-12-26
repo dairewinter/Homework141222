@@ -8,8 +8,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-@Service
-public class IngredientService implements IngredientSerivceImpl {
+
+public class IngredientServiceImpl implements IngredientSerivce {
     private final Map<String, Ingredient> ingredients = new HashMap<>();
 
     public Ingredient addIngredient(Ingredient ingredient) {
