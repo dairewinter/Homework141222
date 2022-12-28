@@ -1,4 +1,4 @@
-package skypro.homework141222;
+package homework1412.homework141222;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
