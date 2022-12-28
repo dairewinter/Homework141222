@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 
 @Service
-public interface IngredientSerivce {
+public interface IngredientService {
 
     public Ingredient addIngredient(Ingredient ingredient);
     public Ingredient getIngredient(String id);

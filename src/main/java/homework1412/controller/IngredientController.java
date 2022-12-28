@@ -1,8 +1,7 @@
 package homework1412.controller;
 
 import homework1412.model.Ingredient;
-import homework1412.service.IngredientSerivce;
-import homework1412.service.IngredientServiceImpl;
+import homework1412.service.IngredientService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +13,9 @@ import java.util.Collection;
 @RequestMapping("/ingredients")
 @Tag(name = "Ингредиенты", description = "Операции с ингредиентами")
 public class IngredientController {
-    private final IngredientSerivce ingredientService;
+    private final IngredientService ingredientService;
 
-    public IngredientController(IngredientServiceImpl ingredientService) {
+    public IngredientController(IngredientService ingredientService) {
         this.ingredientService = ingredientService;
     }
     @GetMapping("/{id}")
