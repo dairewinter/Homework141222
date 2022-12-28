@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import homework1412.model.Recipe;
 import homework1412.service.IngredientFilesService;
+import homework1412.service.RecipeFileService;
 import homework1412.service.RecipeService;
 import homework1412.service.exceptions.ProductNotFoundException;
 import org.apache.commons.lang3.StringUtils;
@@ -13,11 +14,11 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 public class RecipeServiceImpl implements RecipeService {
-    final private IngredientFilesService filesService;
+    final private RecipeFileService recipeFileService;
     private final Map<String, Recipe> recipes = new HashMap<>();
 
-    public RecipeServiceImpl(IngredientFilesService filesService) {
-        this.filesService = filesService;
+    public RecipeServiceImpl(RecipeFileService recipeFileService) {
+        this.recipeFileService = recipeFileService;
     }
 
     public Recipe addRecipe(Recipe recipe) {
@@ -62,14 +63,14 @@ public class RecipeServiceImpl implements RecipeService {
     private void saveToFile(){
         try {
             String json = new ObjectMapper().writeValueAsString(recipes);
-            filesService.saveToFile(json);
+            recipeFileService.saveToFile(json);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
     }
 
     private void readFromFile(){
-        String json = filesService.readFromFile();
+        String json = recipeFileService.readFromFile();
         try {
             new ObjectMapper().readValue(json, new TypeReference<HashMap<String, Recipe>>() {
             });

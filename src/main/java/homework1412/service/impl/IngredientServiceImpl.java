@@ -17,11 +17,11 @@ import java.util.Map;
 
 
 public class IngredientServiceImpl implements IngredientService {
-    final private IngredientFilesService filesService;
+    final private IngredientFilesService ingredientFilesService;
     private final Map<String, Ingredient> ingredients = new HashMap<>();
 
-    public IngredientServiceImpl(IngredientFilesService filesService) {
-        this.filesService = filesService;
+    public IngredientServiceImpl(IngredientFilesService ingredientFilesService) {
+        this.ingredientFilesService = ingredientFilesService;
     }
 
     @PostConstruct
@@ -69,14 +69,14 @@ public class IngredientServiceImpl implements IngredientService {
     private void saveToFile(){
         try {
             String json = new ObjectMapper().writeValueAsString(ingredients);
-            filesService.saveToFile(json);
+            ingredientFilesService.saveToFile(json);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
     }
 
     private void readFromFile(){
-        String json = filesService.readFromFile();
+        String json = ingredientFilesService.readFromFile();
         try {
             new ObjectMapper().readValue(json, new TypeReference<HashMap<String, Recipe>>() {
             });
