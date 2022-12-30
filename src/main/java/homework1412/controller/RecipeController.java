@@ -4,8 +4,13 @@ import homework1412.model.Recipe;
 import homework1412.service.RecipeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 @RestController
 @RequestMapping("/recipes")
@@ -27,6 +32,20 @@ public class RecipeController {
     public Recipe addRecipes(@RequestBody Recipe recipe){
         return this.recipeService.addRecipe(recipe);
     }
+
+    @PostMapping(value = "/import", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity <Object> addRecipeFromFile(@RequestParam MultipartFile file){
+        try(InputStream stream = file.getInputStream()){
+            recipeService.addRecipeFromInputStream(stream);
+            return ResponseEntity.ok().build();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body(e.toString());
+        }
+
+    }
+
+
     @DeleteMapping("/{id}")
     @Operation(description = "Удаление рецептв")
     public ResponseEntity<Void> deleteRecipe(@PathVariable String id){
@@ -45,5 +64,4 @@ public class RecipeController {
         }
         return ResponseEntity.ok(recipe);
     }
-
 }
