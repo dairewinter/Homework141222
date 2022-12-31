@@ -3,6 +3,7 @@ package homework1412.service.impl;
 import homework1412.service.RecipeFileService;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -35,7 +36,8 @@ public class RecipeFilesServiceImpl implements RecipeFileService {
         }
     }
 
-    private boolean removeDataFile(){
+    @Override
+    public boolean removeDataFile(){
         try {
             Path path = Path.of(recipeDataFilePath, recipeDataFileName);
             Files.deleteIfExists(path);
@@ -45,4 +47,10 @@ public class RecipeFilesServiceImpl implements RecipeFileService {
             e.printStackTrace();
         } return false;
     }
+
+    @Override
+    public File getDataFile(){
+        return new File(recipeDataFilePath + "/" + recipeDataFileName);
+    }
+
 }
